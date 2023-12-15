@@ -37,21 +37,241 @@
             </ul>
         
         </div>
-        <div class="container-fluid justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown p-1">
-                    <a href="profile.html" class="nav-link btn btn-light">
-                        <img src="assets/user.png" width="25px" class="rounded-pill"> Profile</a>
-                    
-                    <li class="nav-item">
-                        <a href="login.html" class="nav-link btn btn-light m-1">
-                            <img src="assets/enter.png" width="25"> Login</a>
-                    </li>
-                </li>
-            </ul>
-        </div>
+        
     </nav>
-    <footer class="bg-dark text-light">
+    <form action="db.php" method="post">
+        <br><br><br><br>
+        <div class="row mx-auto p-2 mt-3" >
+            <div class="form-floating  col">
+            <input class="form-control" name="firstname" id="username" type="text"placeholder="Enter Username" required>
+            <label class="p-3" for="username">First Name</label>
+            </div>
+            <div class="form-floating  col">
+                <input class="form-control" name="lastname" type="text" placeholder="EnterLastName" required>
+                <label class="p-3" for="Last">Last Name</label>
+            </div>
+        </div><div class="row mx-auto p-2">
+            <div class="col form-floating">
+                <input class="form-control" type="Email" name="Email" id="email" placeholder="Enter Email" required>
+                <label class="p-3" for="Email">Email Address</label>
+            </div>
+            <div class="col">
+                <div class="input-group" style="height: 55px;">
+                    <button class="dropdown-toggle btn-outline-primary" data-bs-toggle="dropdown">Select Country</button>
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item" id="abovephone" style="border-right: 0; display: inline;"></li>
+                    </ul>
+                    <ul class="dropdown-menu" style="max-height: 350px; overflow-y: scroll; max-width:200px ;">
+                        <li class="dropdown-item" onmouseover="setCode('+93','./assets/Countries/icons8-afghanistan-flag-48.png')"><img src="./assets/Countries/icons8-afghanistan-flag-48.png" width="25" height="25">Afghanistan +93</li>
+                        <li class="dropdown-item" onmouseover="setCode('+355','./assets/Countries/icons8-albania-circular-48.png')"><img src="./assets/Countries/icons8-albania-circular-48.png" width="25" height="25">Albania +355</li>
+                        <li class="dropdown-item" onmouseover="setCode('+213','./assets/Countries/icons8-algeria-48.png')"><img src="./assets/Countries/icons8-algeria-48.png" width="25" height="25">Algeria +213</li>
+                        <li class="dropdown-item" onmouseover="setCode('+994','./assets/Countries/icons8-azerbaijan-48.png')"><img src="./assets/Countries/icons8-azerbaijan-48.png" width="25" height="25">Azerbaijan +994</li>
+                        <li class="dropdown-item" onmouseover="setCode('+61','./assets/Countries/icons8-australia-48.png')"><img src="./assets/Countries/icons8-australia-48.png" width="25" height="25">Australia +61</li>
+                        <li class="dropdown-item" onmouseover="setCode('+43','./assets/Countries/icons8-austria-48.png')"><img src="./assets/Countries/icons8-austria-48.png" width="25" height="25">Austria +43</li>
+                        <li class="dropdown-item" onmouseover="setCode('+973','./assets/Countries/icons8-bahrain-circular-48.png')"><img src="./assets/Countries/icons8-bahrain-circular-48.png" width="25" height="25">Bahrain +973</li>
+                        <li class="dropdown-item" onmouseover="setCode('+880','./assets/Countries/icons8-bangladesh-48.png')"><img src="./assets/Countries/icons8-bangladesh-48.png" width="25" height="25">Bangladesh +880</li>
+                        <li class="dropdown-item" onmouseover="setCode('+375','./assets/Countries/icons8-belarus-48.png')"><img src="./assets/Countries/icons8-belarus-48.png" width="25" height="25">Belarus +375</li>
+                        <li class="dropdown-item" onmouseover="setCode('+32','./assets/Countries/icons8-belgium-48.png')"><img src="./assets/Countries/icons8-belgium-48.png" width="25" height="25">Belgium +32</li>
+                        <li class="dropdown-item" onmouseover="setCode('+501','./assets/Countries/icons8-belize-circular-48.png')"><img src="./assets/Countries/icons8-belize-circular-48.png" width="25" height="25">Belize +501</li>
+                        <li class="dropdown-item" onmouseover="setCode('+229','./assets/Countries/icons8-benin-48.png')"><img src="./assets/Countries/icons8-benin-48.png" width="25" height="25">Benin +229</li>
+                        <li class="dropdown-item" onmouseover="setCode('+591','./assets/Countries/icons8-bolivia-48.png')"><img src="./assets/Countries/icons8-bolivia-48.png" width="25" height="25">Bolivia +591</li>
+                        <li class="dropdown-item" onmouseover="setCode('+387','./assets/Countries/icons8-bosnia-and-herzegovina-48.png')"><img src="./assets/Countries/icons8-bosnia-and-herzegovina-48.png" width="25" height="25">Bosnia and Herzegovina +387</li>
+                        <li class="dropdown-item" onmouseover="setCode('+267','./assets/Countries/icons8-botswana-48.png')"><img src="./assets/Countries/icons8-botswana-48.png" width="25" height="25">Botswana +267</li>
+                        <li class="dropdown-item" onmouseover="setCode('+55','./assets/Countries/icons8-brazil-48.png')"><img src="./assets/Countries/icons8-brazil-48.png" width="25" height="25">Brazil +55</li>
+                        <li class="dropdown-item" onmouseover="setCode('+673','./assets/Countries/icons8-brunei-darussalam-circular-48.png')"><img src="./assets/Countries/icons8-brunei-darussalam-circular-48.png" width="25" height="25">Brunei +673</li>
+                        <li class="dropdown-item" onmouseover="setCode('+359','./assets/Countries/icons8-bulgaria-48.png')"><img src="./assets/Countries/icons8-bulgaria-48.png" width="25" height="25">Bulgaria +359</li>
+                        <li class="dropdown-item" onmouseover="setCode('+226','./assets/Countries/icons8-burkina-faso-48.png')"><img src="./assets/Countries/icons8-burkina-faso-48.png" width="25" height="25">Burkina Faso +226</li>
+                        <li class="dropdown-item" onmouseover="setCode('+257','./assets/Countries/icons8-burundi-48.png')"><img src="./assets/Countries/icons8-burundi-48.png" width="25" height="25">Burundi +257</li>
+                        <li class="dropdown-item" onmouseover="setCode('+975','./assets/Countries/icons8-cambodia-circular-48.png')"><img src="./assets/Countries/icons8-cambodia-circular-48.png" width="25" height="25">Cambodia +855</li>
+                        <li class="dropdown-item" onmouseover="setCode('+237','./assets/Countries/icons8-cameroon-48.png')"><img src="./assets/Countries/icons8-cameroon-48.png" width="25" height="25">Cameroon +237</li>                        
+                        <li class="dropdown-item" onmouseover="setCode('+238','./assets/Countries/icons8-cape-verde-circular-48.png')"><img src="./assets/Countries/icons8-cape-verde-circular-48.png" width="25" height="25">Cape Verde +238</li>
+                        <li class="dropdown-item" onmouseover="setCode('+236','./assets/Countries/icons8-central-african-republic-circular-48.png')"><img src="./assets/Countries/icons8-central-african-republic-circular-48.png" width="25" height="25">Central African Republic +236</li>
+                        <li class="dropdown-item" onmouseover="setCode('+235','./assets/Countries/icons8-chad-48.png')"><img src="./assets/Countries/icons8-chad-48.png" width="25" height="25">Chad +235</li>
+                        <li class="dropdown-item" onmouseover="setCode('+56','./assets/Countries/icons8-chile-48.png')"><img src="./assets/Countries/icons8-chile-48.png" width="25" height="25">Chile +56</li>
+                        <li class="dropdown-item" onmouseover="setCode('+86','./assets/Countries/icons8-china-48.png')"><img src="./assets/Countries/icons8-china-48.png" width="25" height="25">China +86</li>
+                        <li class="dropdown-item" onmouseover="setCode('+57','./assets/Countries/icons8-colombia-48.png')"><img src="./assets/Countries/icons8-colombia-48.png" width="25" height="25">Colombia +57</li>
+                        <li class="dropdown-item" onmouseover="setCode('+269','./assets/Countries/icons8-comoros-circular-48.png')"><img src="./assets/Countries/icons8-comoros-circular-48.png" width="25" height="25">Comoros +269</li>
+                        <li class="dropdown-item" onmouseover="setCode('+506','./assets/Countries/icons8-costa-rica-48.png')"><img src="./assets/Countries/icons8-costa-rica-48.png" width="25" height="25">Costa Rica +506</li>
+                        <li class="dropdown-item" onmouseover="setCode('+385','./assets/Countries/icons8-croatia-48.png')"><img src="./assets/Countries/icons8-croatia-48.png" width="25" height="25">Croatia +385</li>
+                        <li class="dropdown-item" onmouseover="setCode('+53','./assets/Countries/icons8-cuba-48.png')"><img src="./assets/Countries/icons8-cuba-48.png" width="25" height="25">Cuba +53</li>
+                        <li class="dropdown-item" onmouseover="setCode('+357','./assets/Countries/icons8-cyprus-48.png')"><img src="./assets/Countries/icons8-cyprus-48.png" width="25" height="25">Cyprus +357</li>
+                        <li class="dropdown-item" onmouseover="setCode('+420','./assets/Countries/icons8-czech-republic-48.png')"><img src="./assets/Countries/icons8-czech-republic-48.png" width="25" height="25">Czech Republic +420</li>
+                        <li class="dropdown-item" onmouseover="setCode('+45','./assets/Countries/icons8-denmark-48.png')"><img src="./assets/Countries/icons8-denmark-48.png" width="25" height="25">Denmark +45</li>
+                        <li class="dropdown-item" onmouseover="setCode('+253','./assets/Countries/icons8-djibouti-48.png')"><img src="./assets/Countries/icons8-djibouti-48.png" width="25" height="25">Djibouti +253</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1','./assets/Countries/icons8-dominica-circular-48.png')"><img src="./assets/Countries/icons8-dominica-circular-48.png" width="25" height="25">Dominica +1</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1','./assets/Countries/icons8-dominican-republic-48.png')"><img src="./assets/Countries/icons8-dominican-republic-48.png" width="25" height="25">Dominican Republic +1</li>
+                        <li class="dropdown-item" onmouseover="setCode('+20','./assets/Countries/icons8-egypt-48.png')"><img src="./assets/Countries/icons8-egypt-48.png" width="25" height="25">Egypt +20</li>
+                        <li class="dropdown-item" onmouseover="setCode('+503','./assets/Countries/icons8-el-salvador-48.png')"><img src="./assets/Countries/icons8-el-salvador-48.png" width="25" height="25">El Salvador +503</li>
+                        <li class="dropdown-item" onmouseover="setCode('+240','./assets/Countries/icons8-equatorial-guinea-circular-48.png')"><img src="./assets/Countries/icons8-equatorial-guinea-circular-48.png" width="25" height="25">Equatorial Guinea +240</li>
+                        <li class="dropdown-item" onmouseover="setCode('+291','./assets/Countries/icons8-eritrea-48.png')"><img src="./assets/Countries/icons8-eritrea-48.png" width="25" height="25">Eritrea +291</li>
+                        <li class="dropdown-item" onmouseover="setCode('+372','./assets/Countries/icons8-estonia-48.png')"><img src="./assets/Countries/icons8-estonia-48.png" width="25" height="25">Estonia +372</li>
+                        <li class="dropdown-item" onmouseover="setCode('+251','./assets/Countries/icons8-ethiopia-48.png')"><img src="./assets/Countries/icons8-ethiopia-48.png" width="25" height="25">Ethiopia +251</li>
+                        <li class="dropdown-item" onmouseover="setCode('+298','./assets/Countries/icons8-faroe-islands-circular-48.png')"><img src="./assets/Countries/icons8-faroe-islands-circular-48.png" width="25" height="25">Faroe Islands +298</li>
+                        <li class="dropdown-item" onmouseover="setCode('+679','./assets/Countries/icons8-fiji-circular-48.png')"><img src="./assets/Countries/icons8-fiji-circular-48.png" width="25" height="25">Fiji +679</li>
+                        <li class="dropdown-item" onmouseover="setCode('+358','./assets/Countries/icons8-finland-48.png')"><img src="./assets/Countries/icons8-finland-48.png" width="25" height="25">Finland +358</li>
+                        <li class="dropdown-item" onmouseover="setCode('+594','./assets/Countries/french-guiana.png')"><img src="./assets/Countries/french-guiana.png" width="25" height="25">French Guiana +594</li>
+                        <li class="dropdown-item" onmouseover="setCode('+241','./assets/Countries/icons8-gabon-48.png')"><img src="./assets/Countries/icons8-gabon-48.png" width="25" height="25">Gabon +241</li>
+                        <li class="dropdown-item" onmouseover="setCode('+220','./assets/Countries/icons8-gambia-48.png')"><img src="./assets/Countries/icons8-gambia-48.png" width="25" height="25">Gambia +220</li>
+                        <li class="dropdown-item" onmouseover="setCode('+995','./assets/Countries/icons8-georgia-circular-48.png')"><img src="./assets/Countries/icons8-georgia-circular-48.png" width="25" height="25">Georgia +995</li>
+                        <li class="dropdown-item" onmouseover="setCode('+233','./assets/Countries/icons8-ghana-circular-48.png')"><img src="./assets/Countries/icons8-ghana-circular-48.png" width="25" height="25">Ghana +233</li>                    
+                        <li class="dropdown-item" onmouseover="setCode('+350','./assets/Countries/icons8-gibraltar-circular-48.png')"><img src="./assets/Countries/icons8-gibraltar-circular-48.png" width="25" height="25">Gibraltar +350</li>
+                        <li class="dropdown-item" onmouseover="setCode('+30','./assets/Countries/icons8-greece-48.png')"><img src="./assets/Countries/icons8-greece-48.png" width="25" height="25">Greece +30</li>
+                        <li class="dropdown-item" onmouseover="setCode('+299','./assets/Countries/icons8-greenland-circular-48.png')"><img src="./assets/Countries/icons8-greenland-circular-48.png" width="25" height="25">Greenland +299</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1-473','./assets/Countries/icons8-grenada-circular-48.png')"><img src="./assets/Countries/icons8-grenada-circular-48.png" width="25" height="25">Grenada +1-473</li>
+                        <li class="dropdown-item" onmouseover="setCode('+590','./assets/Countries/Guadeloupe.png')"><img src="./assets/Countries/Guadeloupe.png" width="25" height="25">Guadeloupe +590</li>
+                        <li class="dropdown-item" onmouseover="setCode('+502','./assets/Countries/icons8-guatemala-48.png')"><img src="./assets/Countries/icons8-guatemala-48.png" width="25" height="25">Guatemala +502</li>
+                        <li class="dropdown-item" onmouseover="setCode('+224','./assets/Countries/icons8-guinea-circular-48.png')"><img src="./assets/Countries/icons8-guinea-circular-48.png" width="25" height="25">Guinea +224</li>
+                        <li class="dropdown-item" onmouseover="setCode('+245','./assets/Countries/icons8-guinea-bissau-48.png')"><img src="./assets/Countries/icons8-guinea-bissau-48.png" width="25" height="25">Guinea-Bissau +245</li>
+                        <li class="dropdown-item" onmouseover="setCode('+592','./assets/Countries/icons8-guyana-48.png')"><img src="./assets/Countries/icons8-guyana-48.png" width="25" height="25">Guyana +592</li>
+                        <li class="dropdown-item" onmouseover="setCode('+509','./assets/Countries/icons8-the-republic-of-haiti-48.png')"><img src="./assets/Countries/icons8-the-republic-of-haiti-48.png" width="25" height="25">Haiti +509</li>
+                        <li class="dropdown-item" onmouseover="setCode('+504','./assets/Countries/icons8-honduras-48.png')"><img src="./assets/Countries/icons8-honduras-48.png" width="25" height="25">Honduras +504</li>
+                        <li class="dropdown-item" onmouseover="setCode('+852','./assets/Countries/hong-kong.png')"><img src="./assets/Countries/hong-kong.png" width="25" height="25">Hong Kong +852</li>
+                        <li class="dropdown-item" onmouseover="setCode('+36','./assets/Countries/icons8-hungary-48.png')"><img src="./assets/Countries/icons8-hungary-48.png" width="25" height="25">Hungary +36</li>
+                        <li class="dropdown-item" onmouseover="setCode('+354','./assets/Countries/icons8-iceland-48.png')"><img src="./assets/Countries/icons8-iceland-48.png" width="25" height="25">Iceland +354</li>
+                        <li class="dropdown-item" onmouseover="setCode('+91','./assets/Countries/icons8-india-48.png')"><img src="./assets/Countries/icons8-india-48.png" width="25" height="25">India +91</li>
+                        <li class="dropdown-item" onmouseover="setCode('+62','./assets/Countries/icons8-indonesia-48.png')"><img src="./assets/Countries/icons8-indonesia-48.png" width="25" height="25">Indonesia +62</li>
+                        <li class="dropdown-item" onmouseover="setCode('+98','./assets/Countries/icons8-iran-48.png')"><img src="./assets/Countries/icons8-iran-48.png" width="25" height="25">Iran +98</li>
+                        <li class="dropdown-item" onmouseover="setCode('+964','./assets/Countries/icons8-iraq-48.png')"><img src="./assets/Countries/icons8-iraq-48.png" width="25" height="25">Iraq +964</li>
+                        <li class="dropdown-item" onmouseover="setCode('+353','./assets/Countries/icons8-ireland-48.png')"><img src="./assets/Countries/icons8-ireland-48.png" width="25" height="25">Ireland +353</li>
+                        <li class="dropdown-item" onmouseover="setCode('+39','./assets/Countries/icons8-italy-48.png')"><img src="./assets/Countries/icons8-italy-48.png" width="25" height="25">Italy +39</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1','./assets/Countries/icons8-jamaica-48.png')"><img src="./assets/Countries/icons8-jamaica-48.png" width="25" height="25">Jamaica +1</li>
+                        <li class="dropdown-item" onmouseover="setCode('+81','./assets/Countries/icons8-japan-48.png')"><img src="./assets/Countries/icons8-japan-48.png" width="25" height="25">Japan +81</li>
+                        <li class="dropdown-item" onmouseover="setCode('+962','./assets/Countries/icons8-jordan-48.png')"><img src="./assets/Countries/icons8-jordan-48.png" width="25" height="25">Jordan +962</li>
+                        <li class="dropdown-item" onmouseover="setCode('+7','./assets/Countries/icons8-kazakhstan-48.png')"><img src="./assets/Countries/icons8-kazakhstan-48.png" width="25" height="25">Kazakhstan +7</li>
+                        <li class="dropdown-item" onmouseover="setCode('+254','./assets/Countries/icons8-kenya-48.png')"><img src="./assets/Countries/icons8-kenya-48.png" width="25" height="25">Kenya +254</li>
+                        <li class="dropdown-item" onmouseover="setCode('+965','./assets/Countries/icons8-kuwait-48.png')"><img src="./assets/Countries/icons8-kuwait-48.png" width="25" height="25">Kuwait +965</li>
+                        <li class="dropdown-item" onmouseover="setCode('+996','./assets/Countries/icons8-kyrgyzstan-48.png')"><img src="./assets/Countries/icons8-kyrgyzstan-48.png" width="25" height="25">Kyrgyzstan +996</li>
+                        <li class="dropdown-item" onmouseover="setCode('+856','./assets/Countries/icons8-laos-48.png')"><img src="./assets/Countries/icons8-laos-48.png" width="25" height="25">Laos +856</li>
+                        <li class="dropdown-item" onmouseover="setCode('+371','./assets/Countries/icons8-latvia-48.png')"><img src="./assets/Countries/icons8-latvia-48.png" width="25" height="25">Latvia +371</li>
+                        <li class="dropdown-item" onmouseover="setCode('+961','./assets/Countries/icons8-lebanon-48.png')"><img src="./assets/Countries/icons8-lebanon-48.png" width="25" height="25">Lebanon +961</li>
+                        <li class="dropdown-item" onmouseover="setCode('+266','./assets/Countries/icons8-lesotho-48.png')"><img src="./assets/Countries/icons8-lesotho-48.png" width="25" height="25">Lesotho +266</li>
+                        <li class="dropdown-item" onmouseover="setCode('+231','./assets/Countries/icons8-liberia-48.png')"><img src="./assets/Countries/icons8-liberia-48.png" width="25" height="25">Liberia +231</li>
+                        <li class="dropdown-item" onmouseover="setCode('+218','./assets/Countries/icons8-libya-48.png')"><img src="./assets/Countries/icons8-libya-48.png" width="25" height="25">Libya +218</li>
+                        <li class="dropdown-item" onmouseover="setCode('+423','./assets/Countries/icons8-liechtenstein-circular-48.png')"><img src="./assets/Countries/icons8-liechtenstein-circular-48.png" width="25" height="25">Liechtenstein +423</li>
+                        <li class="dropdown-item" onmouseover="setCode('+370','./assets/Countries/icons8-lithuania-48.png')"><img src="./assets/Countries/icons8-lithuania-48.png" width="25" height="25">Lithuania +370</li>
+                        <li class="dropdown-item" onmouseover="setCode('+352','./assets/Countries/icons8-luxembourg-48.png')"><img src="./assets/Countries/icons8-luxembourg-48.png" width="25" height="25">Luxembourg +352</li>
+                        <li class="dropdown-item" onmouseover="setCode('+853','./assets/Countries/icons8-macao-circular-48.png')"><img src="./assets/Countries/icons8-macao-circular-48.png" width="25" height="25">Macao +853</li>
+                        <li class="dropdown-item" onmouseover="setCode('+389','./assets/Countries/icons8-macedonia-48.png')"><img src="./assets/Countries/icons8-macedonia-48.png" width="25" height="25">Macedonia +389</li>
+                        <li class="dropdown-item" onmouseover="setCode('+261','./assets/Countries/icons8-madagascar-48.png')"><img src="./assets/Countries/icons8-madagascar-48.png" width="25" height="25">Madagascar +261</li>
+                        <li class="dropdown-item" onmouseover="setCode('+265','./assets/Countries/icons8-malawi-48.png')"><img src="./assets/Countries/icons8-malawi-48.png" width="25" height="25">Malawi +265</li>
+                        <li class="dropdown-item" onmouseover="setCode('+60','./assets/Countries/icons8-malaysia-48.png')"><img src="./assets/Countries/icons8-malaysia-48.png" width="25" height="25">Malaysia +60</li>
+                        <li class="dropdown-item" onmouseover="setCode('+960','./assets/Countries/icons8-maldives-circular-48.png')"><img src="./assets/Countries/icons8-maldives-circular-48.png" width="25" height="25">Maldives +960</li>
+                        <li class="dropdown-item" onmouseover="setCode('+223','./assets/Countries/icons8-mali-48.png')"><img src="./assets/Countries/icons8-mali-48.png" width="25" height="25">Mali +223</li>
+                        <li class="dropdown-item" onmouseover="setCode('+356','./assets/Countries/icons8-malta-circular-48.png')"><img src="./assets/Countries/icons8-malta-circular-48.png" width="25" height="25">Malta +356</li>
+                        <li class="dropdown-item" onmouseover="setCode('+596','')"><img src="" width="25" height="25">Martinique +596</li>
+                        <li class="dropdown-item" onmouseover="setCode('+222','./assets/Countries/icons8-mauritania-48.png')"><img src="./assets/Countries/icons8-mauritania-48.png" width="25" height="25">Mauritania +222</li>
+                        <li class="dropdown-item" onmouseover="setCode('+230','./assets/Countries/icons8-mauritius-48.png')"><img src="./assets/Countries/icons8-mauritius-48.png" width="25" height="25">Mauritius +230</li>
+                        <li class="dropdown-item" onmouseover="setCode('+52','./assets/Countries/icons8-mexico-48.png')"><img src="./assets/Countries/icons8-mexico-48.png" width="25" height="25">Mexico +52</li>
+                        <li class="dropdown-item" onmouseover="setCode('+373','./assets/Countries/icons8-moldova-circular-48.png')"><img src="./assets/Countries/icons8-moldova-circular-48.png" width="25" height="25">Moldova +373</li>
+                        <li class="dropdown-item" onmouseover="setCode('+377','./assets/Countries/icons8-macao-circular-48.png')"><img src="./assets/Countries/icons8-macao-circular-48.png" width="25" height="25">Monaco +377</li>
+                        <li class="dropdown-item" onmouseover="setCode('+976','./assets/Countries/icons8-mongolia-48.png')"><img src="./assets/Countries/icons8-mongolia-48.png" width="25" height="25">Mongolia +976</li>
+                        <li class="dropdown-item" onmouseover="setCode('+382','./assets/Countries/icons8-montenegro-circular-48.png')"><img src="./assets/Countries/icons8-montenegro-circular-48.png" width="25" height="25">Montenegro +382</li>
+                        <li class="dropdown-item" onmouseover="setCode('+212','./assets/Countries/icons8-morocco-48 .png')"><img src="./assets/Countries/icons8-morocco-48 .png" width="25" height="25">Morocco +212</li>
+                        <li class="dropdown-item" onmouseover="setCode('+258','./assets/Countries/icons8-mozambique-48.png')"><img src="./assets/Countries/icons8-mozambique-48.png" width="25" height="25">Mozambique +258</li>
+                        <li class="dropdown-item" onmouseover="setCode('+95','./assets/Countries/icons8-myanmar-48.png')"><img src="./assets/Countries/icons8-myanmar-48.png" width="25" height="25">Myanmar +95</li>
+                        <li class="dropdown-item" onmouseover="setCode('+264','./assets/Countries/icons8-namibia-48.png')"><img src="./assets/Countries/icons8-namibia-48.png" width="25" height="25">Namibia +264</li>
+                        <li class="dropdown-item" onmouseover="setCode('+977','./assets/Countries/icons8-nepal-circular-48.png')"><img src="./assets/Countries/icons8-nepal-circular-48.png" width="25" height="25">Nepal +977</li>
+                        <li class="dropdown-item" onmouseover="setCode('+31','./assets/Countries/icons8-netherlands-48.png')"><img src="./assets/Countries/icons8-netherlands-48.png" width="25" height="25">Netherlands +31</li>
+                        <li class="dropdown-item" onmouseover="setCode('+64','./assets/Countries/icons8-new-zealand-48.png')"><img src="./assets/Countries/icons8-new-zealand-48.png" width="25" height="25">New Zealand +64</li>
+                        <li class="dropdown-item" onmouseover="setCode('+505','./assets/Countries/icons8-nicaragua-circular-48.png')"><img src="./assets/Countries/icons8-nicaragua-circular-48.png" width="25" height="25">Nicaragua +505</li>
+                        <li class="dropdown-item" onmouseover="setCode('+227','./assets/Countries/icons8-niger-circular-48.png')"><img src="./assets/Countries/icons8-niger-circular-48.png" width="25" height="25">Niger +227</li>
+                        <li class="dropdown-item" onmouseover="setCode('+234','./assets/Countries/icons8-nigeria-circular-48.png')"><img src="./assets/Countries/icons8-nigeria-circular-48.png" width="25" height="25">Nigeria +234</li>
+                        <li class="dropdown-item" onmouseover="setCode('+47','./assets/Countries/icons8-norway-48.png')"><img src="./assets/Countries/icons8-norway-48.png" width="25" height="25">Norway +47</li>
+                        <li class="dropdown-item" onmouseover="setCode('+968','./assets/Countries/icons8-oman-48.png')"><img src="./assets/Countries/icons8-oman-48.png" width="25" height="25">Oman +968</li>
+                        <li class="dropdown-item" onmouseover="setCode('+92','./assets/Countries/icons8-pakistan-48.png')"><img src="./assets/Countries/icons8-pakistan-48.png" width="25" height="25">Pakistan +92</li>
+                        <li class="dropdown-item" onmouseover="setCode('+972','./assets/Countries/icons8-palestine-circular-48.png')"><img src="./assets/Countries/icons8-palestine-circular-48.png" width="25" height="25">Palestine +972</li>
+                        <li class="dropdown-item" onmouseover="setCode('+507','./assets/Countries/icons8-panama-48.png')"><img src="./assets/Countries/icons8-panama-48.png" width="25" height="25">Panama +507</li>
+                        <li class="dropdown-item" onmouseover="setCode('+675','./assets/Countries/icons8-papua-new-guinea-circular-48.png')"><img src="./assets/Countries/icons8-papua-new-guinea-circular-48.png" width="25" height="25">Papua New Guinea +675</li>
+                        <li class="dropdown-item" onmouseover="setCode('+595','./assets/Countries/icons8-paraguay-circular-48.png')"><img src="./assets/Countries/icons8-paraguay-circular-48.png" width="25" height="25">Paraguay +595</li>
+                        <li class="dropdown-item" onmouseover="setCode('+51','./assets/Countries/icons8-peru-48.png')"><img src="./assets/Countries/icons8-peru-48.png" width="25" height="25">Peru +51</li>
+                        <li class="dropdown-item" onmouseover="setCode('+63','./assets/Countries/icons8-philippines-48.png')"><img src="./assets/Countries/icons8-philippines-48.png" width="25" height="25">Philippines +63</li>
+                        <li class="dropdown-item" onmouseover="setCode('+48','./assets/Countries/icons8-poland-48.png')"><img src="./assets/Countries/icons8-poland-48.png" width="25" height="25">Poland +48</li>
+                        <li class="dropdown-item" onmouseover="setCode('+351','./assets/Countries/icons8-portugal-48.png')"><img src="./assets/Countries/icons8-portugal-48.png" width="25" height="25">Portugal +351</li>
+                        <li class="dropdown-item" onmouseover="setCode('+974','./assets/Countries/icons8-qatar-48.png')"><img src="./assets/Countries/icons8-qatar-48.png" width="25" height="25">Qatar +974</li>
+                        <li class="dropdown-item" onmouseover="setCode('+40','./assets/Countries/icons8-romania-48.png')"><img src="./assets/Countries/icons8-romania-48.png" width="25" height="25">Romania +40</li>
+                        <li class="dropdown-item" onmouseover="setCode('+7','./assets/Countries/icons8-russia-48.png')"><img src="./assets/Countries/icons8-russia-48.png" width="25" height="25">Russia +7</li>
+                        <li class="dropdown-item" onmouseover="setCode('+250','./assets/Countries/icons8-rwanda-circular-48.png')"><img src="./assets/Countries/icons8-rwanda-circular-48.png" width="25" height="25">Rwanda +250</li>
+                        <li class="dropdown-item" onmouseover="setCode('+966','./assets/Countries/icons8-saudi-arabia-48.png')"><img src="./assets/Countries/icons8-saudi-arabia-48.png" width="25" height="25">Saudi Arabia +966</li>
+                        <li class="dropdown-item" onmouseover="setCode('+221','./assets/Countries/icons8-senegal-circular-48.png')"><img src="./assets/Countries/icons8-senegal-circular-48.png" width="25" height="25">Senegal +221</li>
+                        <li class="dropdown-item" onmouseover="setCode('+381','./assets/Countries/icons8-serbia-48.png')"><img src="./assets/Countries/icons8-serbia-48.png" width="25" height="25">Serbia +381</li>
+                        <li class="dropdown-item" onmouseover="setCode('+248','./assets/Countries/icons8-seychelles-48.png')"><img src="./assets/Countries/icons8-seychelles-48.png" width="25" height="25">Seychelles +248</li>
+                        <li class="dropdown-item" onmouseover="setCode('+232','./assets/Countries/icons8-sierra-leone-48.png')"><img src="./assets/Countries/icons8-sierra-leone-48.png" width="25" height="25">Sierra Leone +232</li>
+                        <li class="dropdown-item" onmouseover="setCode('+65','./assets/Countries/icons8-singapore-48.png')"><img src="./assets/Countries/icons8-singapore-48.png" width="25" height="25">Singapore +65</li>
+                        <li class="dropdown-item" onmouseover="setCode('+421','./assets/Countries/icons8-slovakia-48.png')"><img src="./assets/Countries/icons8-slovakia-48.png" width="25" height="25">Slovakia +421</li>
+                        <li class="dropdown-item" onmouseover="setCode('+386','./assets/Countries/icons8-slovenia-48.png')"><img src="./assets/Countries/icons8-slovenia-48.png" width="25" height="25">Slovenia +386</li>
+                        <li class="dropdown-item" onmouseover="setCode('+677','./assets/Countries/icons8-solomon-islands-circular-48.png')"><img src="./assets/Countries/icons8-solomon-islands-circular-48.png" width="25" height="25">Solomon Islands +677</li>
+                        <li class="dropdown-item" onmouseover="setCode('+252','./assets/Countries/icons8-somalia-48.png')"><img src="./assets/Countries/icons8-somalia-48.png" width="25" height="25">Somalia +252</li>
+                        <li class="dropdown-item" onmouseover="setCode('+27','./assets/Countries/icons8-south-africa-48.png')"><img src="./assets/Countries/icons8-south-africa-48.png" width="25" height="25">South Africa +27</li>
+                        <li class="dropdown-item" onmouseover="setCode('+82','./assets/Countries/icons8-south-korea-48.png')"><img src="./assets/Countries/icons8-south-korea-48.png" width="25" height="25">South Korea +82</li>
+                        <li class="dropdown-item" onmouseover="setCode('+211','./assets/Countries/icons8-south-sudan-48.png')"><img src="./assets/Countries/icons8-south-sudan-48.png" width="25" height="25">South Sudan +211</li>
+                        <li class="dropdown-item" onmouseover="setCode('+34','./assets/Countries/icons8-spain-48 (1).png')"><img src="./assets/Countries/icons8-spain-48 (1).png" width="25" height="25">Spain +34</li>
+                        <li class="dropdown-item" onmouseover="setCode('+94','./assets/Countries/icons8-sri-lanka-48.png')"><img src="./assets/Countries/icons8-sri-lanka-48.png" width="25" height="25">Sri Lanka +94</li>
+                        <li class="dropdown-item" onmouseover="setCode('+249','./assets/Countries/icons8-sudan-circular-48.png')"><img src="./assets/Countries/icons8-sudan-circular-48.png" width="25" height="25">Sudan +249</li>
+                        <li class="dropdown-item" onmouseover="setCode('+597','./assets/Countries/icons8-suriname-circular-48.png')"><img src="./assets/Countries/icons8-suriname-circular-48.png" width="25" height="25">Suriname +597</li>
+                        <li class="dropdown-item" onmouseover="setCode('+268','./assets/Countries/icons8-eswatini-48.png')"><img src="./assets/Countries/icons8-eswatini-48.png" width="25" height="25">Swaziland +268</li>
+                        <li class="dropdown-item" onmouseover="setCode('+46','./assets/Countries/icons8-sweden-48.png')"><img src="./assets/Countries/icons8-sweden-48.png" width="25" height="25">Sweden +46</li>
+                        <li class="dropdown-item" onmouseover="setCode('+41','./assets/Countries/icons8-switzerland-48.png')"><img src="./assets/Countries/icons8-switzerland-48.png" width="25" height="25">Switzerland +41</li>
+                        <li class="dropdown-item" onmouseover="setCode('+963','./assets/Countries/icons8-syria-48.png')"><img src="./assets/Countries/icons8-syria-48.png" width="25" height="25">Syria +963</li>
+                        <li class="dropdown-item" onmouseover="setCode('+886','./assets/Countries/icons8-taiwan-flag-48.png')"><img src="./assets/Countries/icons8-taiwan-flag-48.png" width="25" height="25">Taiwan +886</li>
+                        <li class="dropdown-item" onmouseover="setCode('+992','./assets/Countries/icons8-tajikistan-48.png')"><img src="./assets/Countries/icons8-tajikistan-48.png" width="25" height="25">Tajikistan +992</li>
+                        <li class="dropdown-item" onmouseover="setCode('+255','./assets/Countries/icons8-tanzania-48.png')"><img src="./assets/Countries/icons8-tanzania-48.png" width="25" height="25">Tanzania +255</li>
+                        <li class="dropdown-item" onmouseover="setCode('+66','./assets/Countries/icons8-thailand-48.png')"><img src="./assets/Countries/icons8-thailand-48.png" width="25" height="25">Thailand +66</li>
+                        <li class="dropdown-item" onmouseover="setCode('+670','./assets/Countries/icons8-timor-leste-48.png')"><img src="./assets/Countries/icons8-timor-leste-48.png" width="25" height="25">Timor-Leste +670</li>
+                        <li class="dropdown-item" onmouseover="setCode('+228','./assets/Countries/icons8-togo-48.png')"><img src="./assets/Countries/icons8-togo-48.png" width="25" height="25">Togo +228</li>
+                        <li class="dropdown-item" onmouseover="setCode('+676','./assets/Countries/icons8-tonga-circular-48.png')"><img src="./assets/Countries/icons8-tonga-circular-48.png" width="25" height="25">Tonga +676</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1','./assets/Countries/icons8-trinidad-and-tobago-48.png')"><img src="./assets/Countries/icons8-trinidad-and-tobago-48.png" width="25" height="25">Trinidad and Tobago +1</li>
+                        <li class="dropdown-item" onmouseover="setCode('+216','./assets/Countries/icons8-tunisia-48.png')"><img src="./assets/Countries/icons8-tunisia-48.png" width="25" height="25">Tunisia +216</li>
+                        <li class="dropdown-item" onmouseover="setCode('+90','./assets/Countries/icons8-turkey-48.png')"><img src="./assets/Countries/icons8-turkey-48.png" width="25" height="25">Turkey +90</li>
+                        <li class="dropdown-item" onmouseover="setCode('+993','./assets/Countries/icons8-turkmenistan-circular-48.png')"><img src="./assets/Countries/icons8-turkmenistan-circular-48.png" width="25" height="25">Turkmenistan +993</li>
+                        <li class="dropdown-item" onmouseover="setCode('+688','./assets/Countries/icons8-tuvalu-circular-48.png')"><img src="./assets/Countries/icons8-tuvalu-circular-48.png" width="25" height="25">Tuvalu +688</li>
+                        <li class="dropdown-item" onmouseover="setCode('+256','./assets/Countries/icons8-uganda-48.png')"><img src="./assets/Countries/icons8-uganda-48.png" width="25" height="25">Uganda +256</li>
+                        <li class="dropdown-item" onmouseover="setCode('+380','./assets/Countries/icons8-ukraine-48.png')"><img src="./assets/Countries/icons8-ukraine-48.png" width="25" height="25">Ukraine +380</li>
+                        <li class="dropdown-item" onmouseover="setCode('+971','./assets/Countries/icons8-united-arab-emirates-48.png')"><img src="./assets/Countries/icons8-united-arab-emirates-48.png" width="25" height="25">United Arab Emirates +971</li>
+                        <li class="dropdown-item" onmouseover="setCode('+44','./assets/Countries/icons8-great-britain-48.png')"><img src="./assets/Countries/icons8-great-britain-48.png" width="25" height="25">United Kingdom +44</li>
+                        <li class="dropdown-item" onmouseover="setCode('+1','./assets/Countries/icons8-usa-48.png')"><img src="./assets/Countries/icons8-usa-48.png" width="25" height="25">United States +1</li>
+                        <li class="dropdown-item" onmouseover="setCode('+598','./assets/Countries/icons8-uruguay-48.png')"><img src="./assets/Countries/icons8-uruguay-48.png" width="25" height="25">Uruguay +598</li>
+                        <li class="dropdown-item" onmouseover="setCode('+998','./assets/Countries/icons8-uzbekistan-48.png')"><img src="./assets/Countries/icons8-uzbekistan-48.png" width="25" height="25">Uzbekistan +998</li>
+                        <li class="dropdown-item" onmouseover="setCode('+678','./assets/Countries/icons8-vanuatu-circular-48.png')"><img src="./assets/Countries/icons8-vanuatu-circular-48.png" width="25" height="25">Vanuatu +678</li>
+                        <li class="dropdown-item" onmouseover="setCode('+58','./assets/Countries/icons8-venezuela-48.png')"><img src="./assets/Countries/icons8-venezuela-48.png" width="25" height="25">Venezuela +58</li>
+                        <li class="dropdown-item" onmouseover="setCode('+84','./assets/Countries/icons8-vietnam-48.png')"><img src="./assets/Countries/icons8-vietnam-48.png" width="25" height="25">Vietnam +84</li>
+                        <li class="dropdown-item" onmouseover="setCode('+967','./assets/Countries/icons8-yemen-48.png')"><img src="./assets/Countries/icons8-yemen-48.png" width="25" height="25">Yemen +967</li>
+                        <li class="dropdown-item" onmouseover="setCode('+260','./assets/Countries/icons8-zambia-circular-48.png')"><img src="./assets/Countries/icons8-zambia-circular-48.png" width="25" height="25">Zambia +260</li>
+                        <li class="dropdown-item" onmouseover="setCode('+263','./assets/Countries/icons8-zimbabwe-48.png')"><img src="./assets/Countries/icons8-zimbabwe-48.png" width="25" height="25">Zimbabwe +263</li>
+                    </ul>
+                    <input  class="form-control" name="phone" id="phone"style="border-left:0;" placeholder="Enter phone_Number" type="tel" required>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col form-floating p-2">
+                <input class="form-control" name="password" placeholder="Enter password" type="password" required>
+                <label class="p-3 form-label" for="subject">Password</label>
+            </div>
+            <div class="col form-floating p-2">
+                <input class="form-control" name="rpassword" placeholder="Repeat password" type="password" required>
+                <label class="p-3 form-label" for="subject">Repeat Password</label>
+            </div>
+            <div class="col form-floating p-2">
+                <input class="form-control" type="date" name="Birthday" placeholder="Enter Birthday" required>
+                <label class="p-3" for="Birthday">Birthday</label>
+            </div>
+            <div class="col form-check">
+                <label for=""class="form-check-label">Gender:</label><br>
+                <input class="form-check-input" type="radio" id="male" name="gender" value="m" required>
+                <label for="male" class="form-check-label">Male</label>
+                <br>
+                <input class="form-check-input" type="radio" id="female" name="gender" value="f" required>
+                <label for="female" class="form-check-label">Female</label>
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <a href="login.html" style="text-decoration: none;">Alreay have an Account?</a>
+        </div>
+        <div class="row mx-auto p-2">
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+    </form>
+    <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
             <ul class="nav justify-content-center">
                 <li class="nav-item ">
@@ -64,5 +284,17 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        function setCode(code,source){
+            var img = document.createElement("img")
+            img.src = source
+            img.width = 30
+            img.height = 30
+            var abovephone = document.getElementById('abovephone')
+            abovephone.innerHTML = img.outerHTML;
+            var PhoneElement = document.getElementById('phone')
+            PhoneElement.value = code
+        }
+    </script>
 </body>
 </html>
