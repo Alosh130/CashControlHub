@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link" >Home</a>
+                    <a href="#" class="nav-link" >Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="dashboard.html" class="nav-link  ">Dashboard</a>
@@ -45,12 +45,23 @@
                     
                     <li class="nav-item">
                         <a href="login.html" class="nav-link btn btn-light m-1">
-                            <img src="assets/enter.png" width="25"> Login</a>
+                            <img src="assets/enter.png" width="25"> Logout</a>
                     </li>
                 </li>
             </ul>
         </div>
     </nav>
+    <br><br><br>
+    <?php
+    session_start();
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+        echo '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> ' . $_SESSION['username'] . '! You are logged in.</p></div>';
+    } else {
+        echo '<p>Welcome! Please log in.</p>';
+    }
+    ?>
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
