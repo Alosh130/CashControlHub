@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+<?php 
+    session_start();
+    ?>
     <nav class="navbar navbar-expand bg-dark fixed-top">
         <div class="container-fluid">
             <ul class="navbar-nav nav-tabs">
@@ -231,7 +234,18 @@
         
         </ul>
     </div>
-   
+    <script>
+        function toggleTheme() {
+        var all = document.getElementById("all");
+        if (all.classList.contains("light_theme")) {
+          all.classList.remove("light_theme");
+          all.classList.add("dark_theme");
+        } else {
+          all.classList.remove("dark_theme");
+          all.classList.add("light_theme");
+        }
+}
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

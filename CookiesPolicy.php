@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+<?php 
+    session_start();
+    ?>
     <nav class="navbar navbar-expand bg-dark fixed-top">
         <div class="container-fluid">
             <ul class="navbar-nav nav-tabs">
@@ -14,26 +17,20 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="add-expense.html" class="dropdown-item" >Add-expenses</a>
+                            <a href="add-expense.php" class="dropdown-item" >Add-expenses</a>
                             <hr class="dropdown-divider">
-                            <a href="transaction-history.html" class="dropdown-item" >Transaction-history</a>
+                            <a href="transaction-history.php" class="dropdown-item" >Transaction-history</a>
                             <hr class="dropdown-divider">
-                            <a href="view-budget.html" class="dropdown-item" >View-budget</a>
+                            <a href="view-budget.php" class="dropdown-item" >View-budget</a>
                             <hr class="dropdown-divider">
                             <a href="settings.html" class="dropdown-item" >Settings</a>    
                             <hr class="dropdown-divider">
-                            <a href="about.html" class="dropdown-item" >About</a>
+                            <a href="about.php" class="dropdown-item" >About</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a href="index.php" class="nav-link" >Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link  ">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="reports.html" class="nav-link  ">Reports</a>
                 </li>
             </ul>
         
@@ -41,8 +38,6 @@
         <div class="container-fluid justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown p-1">
-                    <a href="profile.html" class="nav-link btn btn-light">
-                        <img src="assets/user.png" width="25px" class="rounded-pill"> Profile</a>
                     
                     <li class="nav-item">
                         <a href="login.html" class="nav-link btn btn-light m-1">
@@ -115,6 +110,18 @@
 <li>By email: alimo.business1@gmail.com</li>
 </ul>
     </div>
+    <script>
+        function toggleTheme() {
+        var all = document.getElementById("all");
+        if (all.classList.contains("light_theme")) {
+          all.classList.remove("light_theme");
+          all.classList.add("dark_theme");
+        } else {
+          all.classList.remove("dark_theme");
+          all.classList.add("light_theme");
+        }
+}
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

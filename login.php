@@ -1,5 +1,4 @@
 <?php
-
 session_start(); // Start the session
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,15 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $firstName = $row['FirstName'];
         $lastName = $row['LastName'];
 
-        // Set session variable to indicate user is logged in
+        // Set session variable to indicate the user is logged in
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $firstName;
 
-        // Redirect to index.html
+        // Redirect to indexIN.php
         header('Location: index.php');
         exit();
     } else {
-        echo 'Error: Invalid credentials';
+        // Set an error message
+        $_SESSION['error_message'] = 'Invalid credentials';
+        // Display the error message
+        echo '<p style="color: red;">' . $_SESSION['error_message'] . '</p>';
+        unset($_SESSION['error_message']); // Clear the error message
+
+        // Redirect to login.html
+        header('Location: login.html');
+        exit();
     }
 
     $stmt->close();
