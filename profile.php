@@ -6,46 +6,63 @@
     <title>CashControlHub</title>
 </head>
 <body>
+    <?php
+    session_start();
+    ?>
+    <div class="light_theme" id="all">
     <nav class="navbar navbar-expand bg-dark fixed-top">
         <div class="container-fluid">
             <ul class="navbar-nav nav-tabs">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"></a>
                     <ul class="dropdown-menu">
+                    <li>
+                        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
+                            <a href="add-expense.php" class="dropdown-item">Add Expenses</a>
+                            <hr class="dropdown-divider">
+                            <a href="transaction-history.php" class="dropdown-item">Transaction History</a>
+                            <hr class="dropdown-divider">
+                            <a href="view-budget.php" class="dropdown-item">View Budget</a>
+                            <hr class="dropdown-divider">
+                        <?php endif; ?>
                         <li>
-                            <a href="add-expense.html" class="dropdown-item" >Add-expenses</a>
-                            <hr class="dropdown-divider">
-                            <a href="transaction-history.html" class="dropdown-item" >Transaction-history</a>
-                            <hr class="dropdown-divider">
-                            <a href="view-budget.html" class="dropdown-item" >View-budget</a>
-                            <hr class="dropdown-divider">
-                            <a href="settings.html" class="dropdown-item" >Settings</a>    
-                            <hr class="dropdown-divider">
-                            <a href="about.html" class="dropdown-item" >About</a>
+                            <a href="" class="dropdown-item">Settings &raquo;</a>
+                            <ul class="dropdown-menu dropdown-submenu">
+                            <li>
+                                <a class="dropdown-item btn btn-primary" onclick="toggleTheme()">Dark Theme</a>
+                            </li>
+                        </ul>
                         </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php" class="nav-link" >Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link  ">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="reports.html" class="nav-link  ">Reports</a>
-                </li>
+                        
+                        <hr class="dropdown-divider">
+                        <a href="about.php" class="dropdown-item">About</a>
+                        </li>
+                        </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" >Home</a>
+                        </li>
+                        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
+                        <li class="nav-item">
+                            <a href="dashboard.php" class="nav-link  ">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="reports.php" class="nav-link  ">Reports</a>
+                        </li>
+                        <?php endif; ?>
             </ul>
         
         </div>
         <div class="container-fluid justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown p-1">
-                    <a href="profile.html" class="nav-link btn btn-light">
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
+                    <a href="profile.php" class="nav-link btn btn-light">
                         <img src="assets/user.png" width="25px" class="rounded-pill"> Profile</a>
-                    
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a href="login.html" class="nav-link btn btn-light m-1">
-                            <img src="assets/enter.png" width="25"> Login</a>
+                    <a href="<?php echo (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) ? 'logout.php' : 'login.html'; ?>" class="nav-link btn btn-light m-1">
+                            <img src="assets/enter.png" width="25"><?php echo ($_SESSION['loggedin'] ?? false) ? 'Logout' : 'Login'; ?></a>
                     </li>
                 </li>
             </ul>
@@ -63,6 +80,8 @@
             </ul>
         </div>
     </footer>
+    </div>
+
     <script>
         function toggleTheme() {
         var all = document.getElementById("all");

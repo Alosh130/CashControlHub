@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES ('$firstName', '$lastName', '$userpassword','$Email', '$Age', '$phone', '$gender')";
 
             if($conn->query($sql)=== TRUE){
+                header("Location:login.html");
                 echo $firstName . ' ' . $lastName . ' Successfully Registered!';
             }else{
                 echo 'Error: '. $conn->error;
