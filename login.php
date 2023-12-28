@@ -1,5 +1,6 @@
 <?php
-session_start(); // Start the session
+ // Start the session
+ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $servername = 'localhost';
@@ -17,6 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $EmailandPhone = $_POST['Email'];
     $userpass = $_POST['Pass'];
+    $query = "SELECT gender FROM reg WHERE Email = '$EmailandPhone'";
+    $gender_result = mysqli_query($conn,$query);
+    if($gender_result){
+        $row = mysqli_fetch_assoc($gender_result);
+        $gender = $row['gender'];
+
+        $_SESSION['gender'] = $gender;
+    }
 
     $stmt = $conn->prepare("SELECT * FROM reg WHERE (Email = ? OR Phone = ?) AND Password = ?");
     $stmt->bind_param("sss", $EmailandPhone, $EmailandPhone, $userpass);
@@ -32,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Set session variable to indicate the user is logged in
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $firstName;
+        $_SESSION['lastname'] = $lastName;
 
         // Redirect to indexIN.php
         header('Location: index.php');

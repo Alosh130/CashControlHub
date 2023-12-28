@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
@@ -9,8 +11,8 @@
     <?php
     session_start();
     ?>
-    <div class="light_theme" id="all">
-    <nav class="navbar navbar-expand bg-dark fixed-top">
+ <div class="light_theme" id="all">
+ <nav class="navbar navbar-expand bg-dark fixed-top">
         <div class="container-fluid">
             <ul class="navbar-nav nav-tabs">
                 <li class="nav-item dropdown">
@@ -40,7 +42,7 @@
                         </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php" class="nav-link" >Home</a>
+                            <a href="#" class="nav-link" >Home</a>
                         </li>
                         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
                         <li class="nav-item">
@@ -153,7 +155,7 @@ You agree that the original English text shall prevail in the case of a dispute.
 <li>By email: alimo.business1@gmail.com</li>
 </ul>
     </div>
-    </div>
+ </div>
 
     <script>
         function toggleTheme() {
@@ -167,5 +169,6 @@ You agree that the original English text shall prevail in the case of a dispute.
             }
     }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

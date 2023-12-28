@@ -108,13 +108,14 @@
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
     <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <footer class="bg-dark text-light">
+    <br>
+    <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
             <ul class="nav justify-content-center">
                 <li class="nav-item ">
-                    <a href="PrivacyPolicy.html">Privacy Policy <span class="text-light">.</span></a>
-                    <a href="Terms&Conditions.html" >&nbsp;Terms & Conditions<span class="text-light">.</span></a>
-                    <a href="CookiesPolicy.html">CookiesPolicy<span class="text-light">.</span></a>
+                    <a href="PrivacyPolicy.php">Privacy Policy <span class="text-light">.</span></a>
+                    <a href="Terms&Conditions.php" >&nbsp;Terms & Conditions<span class="text-light">.</span></a>
+                    <a href="CookiesPolicy.php">CookiesPolicy<span class="text-light">.</span></a>
                     <span href="#" class="text-primary">All Rights Reserved.&copy;</span>
                 </li>
             </ul>

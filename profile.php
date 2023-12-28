@@ -9,6 +9,11 @@
 <body>
     <?php
     session_start();
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["new_profile_pic"])) {
+        $pic = $_POST['profile_pic'];
+        $_SESSION['pic'] = $pic;
+    }
     ?>
     <div class="light_theme" id="all">
     <nav class="navbar navbar-expand bg-dark fixed-top">
@@ -69,20 +74,41 @@
             </ul>
         </div>
     </nav>
-    <footer class="bg-dark text-light">
+    <br><br><br>
+    <div class="container-fluid">
+        <div class="card" style="width:35%; margin-left:auto; margin-right:auto;">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+               <?php if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'm'):?>
+                <img class="card-img-top" src="./assets/male_avatar.png" style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                <div class="card-body" style="text-align:center;">
+                        <input id="Filei" type="button" name="profile_pic" onclick="changeFile()" value="Change Image">
+                        <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                    </div>
+                <?php else: ?>
+                    <img class="card-img-top" src="./assets/female_avatar.png"style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                    <div class="card-body" style="text-align:center;">
+                    <input id="Filei" type="button" name="profile_pic" onclick="changeFile()" value="Change Image">
+                        <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                    </div>
+                <?php endif;?>
+        </div></form>
+    </div>
+    <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
             <ul class="nav justify-content-center">
                 <li class="nav-item ">
-                    <a href="PrivacyPolicy.html">Privacy Policy <span class="text-light">.</span></a>
-                    <a href="Terms&Conditions.html" >&nbsp;Terms & Conditions<span class="text-light">.</span></a>
-                    <a href="CookiesPolicy.html">CookiesPolicy<span class="text-light">.</span></a>
+                    <a href="PrivacyPolicy.php">Privacy Policy <span class="text-light">.</span></a>
+                    <a href="Terms&Conditions.php" >&nbsp;Terms & Conditions<span class="text-light">.</span></a>
+                    <a href="CookiesPolicy.php">CookiesPolicy<span class="text-light">.</span></a>
                     <span href="#" class="text-primary">All Rights Reserved.&copy;</span>
                 </li>
             </ul>
         </div>
     </footer>
     </div>
+               <?php
 
+               ?>     
     <script>
         function toggleTheme() {
         var all = document.getElementById("all");
@@ -94,6 +120,16 @@
           all.classList.add("light_theme");
         }
 }
+        function changeFile(){
+            document.getElementById("Filei").outerHTML = "";
+            var existing = document.querySelector(".card-body")
+            var inputfile = document.createElement("input");
+            inputfile.type = "file";
+            var subbtn = document.createElement("input");
+            subbtn.type = "submit";
+            existing.appendChild(inputfile);
+            existing.appendChild(subbtn);
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
