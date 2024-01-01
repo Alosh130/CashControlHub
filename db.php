@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $servername = 'localhost';
     $username = 'root';
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
     $userpassword = $_POST['password'];
-    $Email = $_POST['Email'];
+    $Email = $_POST['Email'];$_SESSION['Email'] = $Email;
     $Age = $_POST['Birthday'];
     $phone = $_POST['phone'];
     $gender = $_POST['gender'];

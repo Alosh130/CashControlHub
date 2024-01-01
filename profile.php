@@ -4,6 +4,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="assets/piggy-bank.png">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .L{
+            border-radius: 5px; 
+            transition: 0.2s all;
+            outline: none; 
+            box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+            text-decoration:none;
+            border:none;
+        }
+        .L:hover{
+            background-color:rgb(116,118,120);
+            
+        }
+        .L:active{
+            transform: scale(0.97);
+            
+        }
+    </style>
     <title>CashControlHub</title>
 </head>
 <body>
@@ -75,24 +93,51 @@
         </div>
     </nav>
     <br><br><br>
+    <?php
+    $servername = 'localhost';
+    $username = 'root';
+    $password = '';
+    $dbname = 'cashcontrolhub';
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "SELECT filename FROM `cashcontrolhub`.`reg` WHERE Email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s",$_SESSION['Email']);
+    $stmt->execute();
+    $stmt->bind_result($filename);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+    
+    $malesrc = (!empty($filename)) ? "./uploads/$filename" : "./assets/male_avatar.png";
+    $femalesrc = (!empty($filename)) ? "./uploads/$filename" : "./assets/female_avatar.png";
+    ?>
+    
+
+    
     <div class="container-fluid">
         <div class="card" style="width:35%; margin-left:auto; margin-right:auto;">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <form action="PictureUpload.php" method="post" enctype="multipart/form-data">
                <?php if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'm'):?>
-                <img class="card-img-top" src="./assets/male_avatar.png" style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                <img class="card-img-top" src="<?php echo $malesrc ?>" style="margin-left:auto;margin-right:auto;display:block; width:350px;">
                 <div class="card-body" style="text-align:center;">
-                        <input id="Filei" type="button" name="profile_pic" onclick="changeFile()" value="Change Image">
+                        <input id="N" class="Filei"style="display:none;" type="file" name="fileToUpload" value="Change Image">
+                        <label for="N" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <input type="submit" name="submit" class="btn btn-primary">
                         <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
                     </div>
                 <?php else: ?>
-                    <img class="card-img-top" src="./assets/female_avatar.png"style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                    <img class="card-img-top" src="<?php echo $femalesrc ?>"style="margin-left:auto;margin-right:auto;display:block; width:350px;">
                     <div class="card-body" style="text-align:center;">
-                    <input id="Filei" type="button" name="profile_pic" onclick="changeFile()" value="Change Image">
+                    <input class="Filei" id="F" style="display:none;" type="file" name="fileToUpload" value="Change Image">
+                        <label for="F" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <input type="submit" name="submit" class="btn btn-primary">Submit</input>
                         <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
                     </div>
                 <?php endif;?>
         </div></form>
+        
     </div>
+    <br><br>
     <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
             <ul class="nav justify-content-center">
@@ -120,16 +165,6 @@
           all.classList.add("light_theme");
         }
 }
-        function changeFile(){
-            document.getElementById("Filei").outerHTML = "";
-            var existing = document.querySelector(".card-body")
-            var inputfile = document.createElement("input");
-            inputfile.type = "file";
-            var subbtn = document.createElement("input");
-            subbtn.type = "submit";
-            existing.appendChild(inputfile);
-            existing.appendChild(subbtn);
-        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
