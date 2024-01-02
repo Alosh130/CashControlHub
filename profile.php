@@ -5,28 +5,55 @@
     <link rel="icon" type="image/x-icon" href="assets/piggy-bank.png">
     <link rel="stylesheet" href="style.css">
     <style>
-        .L{
-            border-radius: 5px; 
+        body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+        .L {
+            padding: 8px 16px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
             transition: 0.2s all;
-            outline: none; 
-            box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-            text-decoration:none;
-            border:none;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .L:hover{
-            background-color:rgb(116,118,120);
+            background-color: #0056b3;
+            border-color: #0056b3;
             
         }
         .L:active{
             transform: scale(0.97);
             
         }
+        .unbold{
+        font-weight: normal !important;
+    }
+    .navbar {
+    padding: 10px;
+    background-color: #f8f9fa;
+    }
+    footer {
+        padding: 10px;
+        background-color: #343a40;
+    }
+    .btn:hover{
+        color:black;
+        border-color:black;
+    }
+    
     </style>
     <title>CashControlHub</title>
 </head>
 <body>
     <?php
     session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        echo "<script>alert('Please log in first!'); window.location = 'index.php';</script>";
+        exit; 
+    }
     
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["new_profile_pic"])) {
         $pic = $_POST['profile_pic'];
@@ -94,6 +121,7 @@
     </nav>
     <br><br><br>
     <?php
+    
     $servername = 'localhost';
     $username = 'root';
     $password = '';
@@ -110,28 +138,46 @@
     
     $malesrc = (!empty($filename)) ? "./uploads/$filename" : "./assets/male_avatar.png";
     $femalesrc = (!empty($filename)) ? "./uploads/$filename" : "./assets/female_avatar.png";
+    $threechar = substr($_SESSION['Email'],0,3);
+    $at = strpos($_SESSION['Email'],'@') ;
+    if($at !== false)
+    {
+        $size = $at - 3;
+    }
+    $str = "";
+    for($i = 0;$i<$size;$i++)
+    {
+        $str .= "*";
+    }
+    $date = new DateTime($_SESSION['AGE']);
+    $now = new DateTime();
+    $interval = $now->diff($date);
     ?>
     
-
-    
-    <div class="container-fluid">
+    <div class="container-fluid p-3">
         <div class="card" style="width:35%; margin-left:auto; margin-right:auto;">
         <form action="PictureUpload.php" method="post" enctype="multipart/form-data">
                <?php if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'm'):?>
-                <img class="card-img-top" src="<?php echo $malesrc ?>" style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                <img class="card-img-top" src="<?php echo $malesrc ?>" style="margin-left:auto;margin-right:auto;display:block; width:100%;">
                 <div class="card-body" style="text-align:center;">
+                    <a href="EditProfile.php" class="btn btn-success p-2 m-2">Edit Profile</a>
                         <input id="N" class="Filei"style="display:none;" type="file" name="fileToUpload" value="Change Image">
-                        <label for="N" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
-                        <input type="submit" name="submit" class="btn btn-primary">
-                        <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                        <label for="N" onclick="View()" class="btn btn-white p-2 m-2 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <input type="submit" name="submit" class="btn btn-primary" id="SubmitP" style="display:none;">
+                        <h4 class="card-title m-2" style="text-align:left;"><span class="unbold">FullName:</span> <?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                        <h4 class="card-text m-2" style="text-align:left;">Email:<?php echo $threechar . $str . substr($_SESSION['Email'], $at); ?> </h4>
+                        <h4 class="card-text m-2" style="text-align:left;">Age: <?php echo $interval->y . " Years And ". $interval->m. " Months old" ?></h4>
                     </div>
-                <?php else: ?>
-                    <img class="card-img-top" src="<?php echo $femalesrc ?>"style="margin-left:auto;margin-right:auto;display:block; width:350px;">
+                <?php elseif(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'f'): ?>
+                    <img class="card-img-top" src="<?php echo $femalesrc ?>"style="margin-left:auto;margin-right:auto;display:block; width:100%;">
                     <div class="card-body" style="text-align:center;">
+                    <a href="EditProfile.php" class="btn btn-success p-2 m-2">Edit Profile</a>
                     <input class="Filei" id="F" style="display:none;" type="file" name="fileToUpload" value="Change Image">
-                        <label for="F" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
-                        <input type="submit" name="submit" class="btn btn-primary">Submit</input>
-                        <h4 class="card-title" style="text-align:center;"><?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                        <label for="F" onclick="View()" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <input type="submit" name="submit" style="display:none;" id="SubmitP" class="btn btn-primary">
+                        <h5 class="card-title p-2" style="text-align:left;"><span class="unbold">FullName:</span> <?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h5>
+                        <h5 class="card-text m-2" style="text-align:left;">Email:<?php echo $threechar . $str . substr($_SESSION['Email'], $at); ?> </h5>
+                        <h5 class="card-text m-2" style="text-align:left;">Age: <?php echo $interval->y . " Years And ". $interval->m. " Months old" ?></h5>
                     </div>
                 <?php endif;?>
         </div></form>
@@ -155,6 +201,10 @@
 
                ?>     
     <script>
+        function View(){
+            S = document.getElementById("SubmitP")
+            S.style.display = "inline-block"
+        }
         function toggleTheme() {
         var all = document.getElementById("all");
         if (all.classList.contains("light_theme")) {
@@ -164,7 +214,7 @@
           all.classList.remove("dark_theme");
           all.classList.add("light_theme");
         }
-}
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

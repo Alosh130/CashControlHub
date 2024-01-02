@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if ($stmt->execute()) {
                     header("Location: Profile.php");
-                    echo 'alert("The query is working")';
+                    echo '<script>alert("The query is working")</script>';
                     exit();
                 } else {
                     echo 'Error: ' . $stmt->error;

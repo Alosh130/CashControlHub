@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkPresult = $conn->query($checkphone);
 
     if($checkresult->num_rows > 0 || $checkPresult->num_rows >0){
-        //Email and phone already exists
         echo"Email or Phone already exists!";
     }else{
         if($userpassword != $rPassword){
@@ -42,7 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if($conn->query($sql)=== TRUE){
                 header("Location:login.html");
-                echo $firstName . ' ' . $lastName . ' Successfully Registered!';
+                echo "<script>alert($firstName . ' ' . $lastName . ' Successfully Registered!')</script>";
+                $_SESSION['AGE'] = $Age;
+                $_SESSION['pwd'] = $userpassword;
+                $_SESSION['Pnumber'] = $phone;
             }else{
                 echo 'Error: '. $conn->error;
             }

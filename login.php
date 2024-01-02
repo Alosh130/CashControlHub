@@ -32,7 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $img = $row['filename'];
         $_SESSION['filename'] = $img ;
     }
-
+    $query3 = "SELECT Birthday FROM reg WHERE Email = '$EmailandPhone'";
+    $Age_result = mysqli_query($conn,$query3);
+    if($Age_result)
+    {
+        $row = mysqli_fetch_assoc($Age_result);
+        $Age = $row['Birthday'];
+        $_SESSION['AGE'] = $Age;
+    }
+    $query4 = "SELECT Phone From reg Where Email = '$EmailandPhone'";
+    $P_result = mysqli_query($conn,$query4);
+    if($P_result){
+        $row = mysqli_fetch_assoc($P_result);
+        $Phone = $row['Phone'];
+        $_SESSION['Pnumber'] = $Phone;
+    }
+    $query5 = "SELECT Password From reg Where Email = '$EmailandPhone'";
+    $Pass_result = mysqli_query($conn,$query5);
+    if($Pass_result){
+        $row = mysqli_fetch_assoc($Pass_result);
+        $gotPass = $row['Password'];
+        $_SESSION['pwd'] = $gotPass;
+    }
     $stmt = $conn->prepare("SELECT * FROM reg WHERE (Email = ? OR Phone = ?) AND Password = ?");
     $stmt->bind_param("sss", $EmailandPhone, $EmailandPhone, $userpass);
     $stmt->execute();
