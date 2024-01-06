@@ -5,9 +5,9 @@
     <link rel="icon" type="image/x-icon" href="assets/piggy-bank.png">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
+    body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-}
+    }
         .L {
             padding: 8px 16px;
             font-size: 1rem;
@@ -30,20 +30,25 @@
         }
         .unbold{
         font-weight: normal !important;
-    }
-    .navbar {
-    padding: 10px;
-    background-color: #f8f9fa;
-    }
-    footer {
+        }
+        .navbar {
         padding: 10px;
-        background-color: #343a40;
-    }
-    .btn:hover{
-        color:black;
-        border-color:black;
-    }
-    
+        background-color: #f8f9fa;
+        }
+        footer {
+            padding: 10px;
+            background-color: #343a40;
+        }
+        .btn:hover{
+            color:black;
+            border-color:black;
+        }
+        .focus:focus{
+            outline:4px solid rgba(69,255,255,0.7);
+        }
+        .card-title,.card-text{
+            font-size:1.6em;
+        }
     </style>
     <title>CashControlHub</title>
 </head>
@@ -140,6 +145,7 @@
     $femalesrc = (!empty($filename)) ? "./uploads/$filename" : "./assets/female_avatar.png";
     $threechar = substr($_SESSION['Email'],0,3);
     $at = strpos($_SESSION['Email'],'@') ;
+    $size = 0;
     if($at !== false)
     {
         $size = $at - 3;
@@ -155,25 +161,25 @@
     ?>
     
     <div class="container-fluid p-3">
-        <div class="card" style="width:35%; margin-left:auto; margin-right:auto;">
+        <div class="card" style="width:40%; margin-left:auto; margin-right:auto;">
         <form action="PictureUpload.php" method="post" enctype="multipart/form-data">
                <?php if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'm'):?>
                 <img class="card-img-top" src="<?php echo $malesrc ?>" style="margin-left:auto;margin-right:auto;display:block; width:100%;">
                 <div class="card-body" style="text-align:center;">
                     <a href="EditProfile.php" class="btn btn-success p-2 m-2">Edit Profile</a>
                         <input id="N" class="Filei"style="display:none;" type="file" name="fileToUpload" value="Change Image">
-                        <label for="N" onclick="View()" class="btn btn-white p-2 m-2 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <label for="N" onclick="View()" class="focus btn btn-white p-2 m-2 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
                         <input type="submit" name="submit" class="btn btn-primary" id="SubmitP" style="display:none;">
-                        <h4 class="card-title m-2" style="text-align:left;"><span class="unbold">FullName:</span> <?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
-                        <h4 class="card-text m-2" style="text-align:left;">Email:<?php echo $threechar . $str . substr($_SESSION['Email'], $at); ?> </h4>
-                        <h4 class="card-text m-2" style="text-align:left;">Age: <?php echo $interval->y . " Years And ". $interval->m. " Months old" ?></h4>
+                        <h4 class="card-title m-2" style="text-align:left;color:black;"><span class="unbold">FullName:</span> <?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h4>
+                        <h4 class="card-text m-2" style="text-align:left;color:black;">Email:<?php echo $threechar . $str . substr($_SESSION['Email'], $at); ?> </h4>
+                        <h4 class="card-text m-2" style="text-align:left;color:black;">Age: <?php echo $interval->y . " Years And ". $interval->m. " Months old" ?></h4>
                     </div>
                 <?php elseif(isset($_SESSION['loggedin'])&& $_SESSION['loggedin']=== true && $_SESSION['gender']== 'f'): ?>
                     <img class="card-img-top" src="<?php echo $femalesrc ?>"style="margin-left:auto;margin-right:auto;display:block; width:100%;">
                     <div class="card-body" style="text-align:center;">
                     <a href="EditProfile.php" class="btn btn-success p-2 m-2">Edit Profile</a>
                     <input class="Filei" id="F" style="display:none;" type="file" name="fileToUpload" value="Change Image">
-                        <label for="F" onclick="View()" class="btn btn-white p-0 m-0 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
+                        <label for="F" onclick="View()" class="focus btn btn-white p-2 m-2 L" style="width:150px;border:1px solid black;font-size:1.1em;">Change Photo</label>
                         <input type="submit" name="submit" style="display:none;" id="SubmitP" class="btn btn-primary">
                         <h5 class="card-title p-2" style="text-align:left;"><span class="unbold">FullName:</span> <?php echo $_SESSION['username'] . ' ' . $_SESSION['lastname'];?></h5>
                         <h5 class="card-text m-2" style="text-align:left;">Email:<?php echo $threechar . $str . substr($_SESSION['Email'], $at); ?> </h5>

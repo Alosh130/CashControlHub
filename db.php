@@ -29,28 +29,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $checkphone = "SELECT * FROM reg WHERE Phone = '$phone'";
     $checkPresult = $conn->query($checkphone);
-
-    if($checkresult->num_rows > 0 || $checkPresult->num_rows >0){
-        echo"Email or Phone already exists!";
+    if(strlen($userpassword)<8){
+        header("Location:register.html?error=PasswordMustBeAtLeast8Characters");
     }else{
-        if($userpassword != $rPassword){
-           echo '<script>alert("Passwords doesn\'t Match")</script>';
+        if($checkresult->num_rows > 0 || $checkPresult->num_rows >0){
+            echo"Email or Phone already exists!";
         }else{
-            $sql = "INSERT INTO `cashcontrolhub`.`reg` (FirstName, LastName, Password,Email, Birthday,Phone, Gender)
-            VALUES ('$firstName', '$lastName', '$userpassword','$Email', '$Age', '$phone', '$gender')";
-
-            if($conn->query($sql)=== TRUE){
-                header("Location:login.html");
-                echo "<script>alert($firstName . ' ' . $lastName . ' Successfully Registered!')</script>";
-                $_SESSION['AGE'] = $Age;
-                $_SESSION['pwd'] = $userpassword;
-                $_SESSION['Pnumber'] = $phone;
+            if($userpassword != $rPassword){
+               echo '<script>alert("Passwords doesn\'t Match")</script>';
             }else{
-                echo 'Error: '. $conn->error;
+                $sql = "INSERT INTO `cashcontrolhub`.`reg` (FirstName, LastName, Password,Email, Birthday,Phone, Gender)
+                VALUES ('$firstName', '$lastName', '$userpassword','$Email', '$Age', '$phone', '$gender')";
+    
+                if($conn->query($sql)=== TRUE){
+                    header("Location:login.html");
+                    echo "<script>alert($firstName . ' ' . $lastName . ' Successfully Registered!')</script>";
+                    $_SESSION['AGE'] = $Age;
+                    $_SESSION['pwd'] = $userpassword;
+                    $_SESSION['Pnumber'] = $phone;
+                }else{
+                    echo 'Error: '. $conn->error;
+                }
             }
+            
         }
-        
     }
+    
     // Close connection
     $conn->close();
 } else {

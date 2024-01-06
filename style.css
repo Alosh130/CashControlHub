@@ -15,7 +15,6 @@
     display: block;
     cursor: pointer;
     }
-
     .light_theme{
         background-color: #ffffff;
         color: #000000;
@@ -24,4 +23,3 @@
         background-color: #333333;
         color: #ffffff;
     }
-    
