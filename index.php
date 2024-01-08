@@ -5,15 +5,87 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
     body{
-        font-family:Arial, Helvetica, sans-serif ;
+        font-family:Arial,helvetica,sans-serif ;
+        
+    }
+    #all{
+        background-image:url("./assets/background.avif");
+        background-size:contain;
     }
     .navbar {
     padding: 10px;
     background-color: #f8f9fa;
     }
+    .section1{
+        width:1300px;
+        height:500px;
+        background-color:grey;
+        display:flex;
+        justify-content:space-around;
+        align-items:flex-start;
+        flex-wrap:wrap;
+        border:2px double black;
+        border-radius:10px;
+        background-image:url("./assets/background.jpg");
+        background-size:cover;
+    }
+    .content1{
+        align-self:center;
+        background-color: rgba(30, 30, 30, 0.5);
+    }
+    .img1{
+        border-radius:12px;
+        width:600px;
+    }
     footer {
         padding: 10px;
         background-color: #343a40;
+    }
+    .section1 a{
+        display:flex;
+        align-self:flex-start;
+        font-weight:bold;
+        font-size:1.2em;
+    }
+    .section2 a{
+        font-weight:bold;
+        font-size:1.2em;
+        order:2;
+        align-self:flex-end;
+    }
+    .ti1{
+        display:flex;
+        flex-direction:row;
+    }
+    s{
+        display:inline;
+        text-decoration:underline;
+    }
+    .section2{
+        width:1300px;
+        height:400px;
+        background-color:rgba(70, 53, 70,0.9);
+        display:flex;
+        flex-wrap:wrap;
+        border:2px double black;
+        justify-content:flex-start;
+        border-radius:10px;
+        flex-direction:row;
+    }
+    .content2{ 
+        order:3;
+        
+        align-self:center;
+        flex:1;
+    }
+    .img2{
+        border-radius:12px;
+        height:320px;
+        width:500px;
+    }
+    .image{
+        order:1;
+        align-self:flex-start;
     }
     </style>
     <link rel="icon" type="image/x-icon" href="assets/piggy-bank.png">
@@ -91,36 +163,28 @@
         <strong>Success!</strong> ' . $_SESSION['username'] . '! You are logged in.</p></div>';
     }
     ?>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-    <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+    <?php if(isset($_SESSION['loggedin'])===false) :?>
+    <div class="section1 p-3 m-5 text-capitalize text-warning">
+        <div class="ti1">
+        <h1 class="content1">If you want to spare some money and fix your financial problems Join Us And register now starting at 8.99$/month , 59.99$/year <br><s>trial 30 days for free</s></h1>
+        <img class="img1" src="./assets/how-to-run-a-volunteer-board-meeting.jpg" alt="Meeting">
+        </div>
+
+        <a href="register.html" class="btn btn-success">Register Now</a>
+        
+        
+    </div>
+    <?php else: ?>
+    <div class="section2 p-3 m-5 text-capitalize text-primary">
+            <div class="image">
+            <img class="img2" src="./assets/about-us.avif" alt="Meeting">
+            </div>
+            <div class="content2">
+            <h1>Uncover the reasons why <b class="text-success">CashControlHub.com</b> stands out in the realm of financial management.</h1>
+            </div>
+        <a href="about.php" class="btn btn-primary">Explore More</a>
+    </div>
+    <?php endif; ?>
     <br>
     <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
