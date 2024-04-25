@@ -15,6 +15,15 @@
         padding: 10px;
         background-color: #343a40;
     }
+    #container{
+        display: flex;
+        justify-content:center;
+        margin:10px;
+        padding:10px;
+    }
+    
+    
+    
     </style>
     <link rel="stylesheet" href="style.css">
     <title>CashControlHub</title>
@@ -28,7 +37,7 @@
     }
     ?>
     <div class="light_theme" id="all">
-    <nav class="navbar navbar-expand bg-dark fixed-top">
+    <nav class="navbar navbar-expand bg-dark ">
         <div class="container-fluid">
             <ul class="navbar-nav nav-tabs">
                 <li class="nav-item dropdown">
@@ -86,6 +95,12 @@
             </ul>
         </div>
     </nav>
+    
+    <div id="container">
+    <canvas id="FirstChart" height="500" width="600"></canvas>
+    <canvas id="SecondChart" height="500" width="800"></canvas>
+    </div>
+
     <footer class="bg-dark text-light fixed-bottom">
         <div class="container-fluid">
             <ul class="nav justify-content-center">
@@ -99,7 +114,7 @@
         </div>
     </footer>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <script>
         function toggleTheme() {
         var all = document.getElementById("all");
@@ -112,6 +127,68 @@
         }
 }
     </script>
+    <script>
+        const ctx = document.getElementById('FirstChart');
+
+        new Chart(ctx, {
+        type: 'radar',
+        data: {
+        labels: ["Jan","Feb" ,"Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        datasets: [{
+          label: 'Money Spent',
+          data: [500, 300, 450, 700, 250, 300,800, 500, 600, 400, 360, 290],
+          borderWidth: 2
+        }]
+        },
+        options: {
+            plugins:{
+                title:{
+                display:true,
+                text:'Money Spent',
+                fontSize:50,
+            }
+            },
+            
+            responsive:false,
+            maintainAspectRatio:false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+        }
+        });
+        const ctx1 = document.getElementById('SecondChart');
+
+        new Chart(ctx1, {
+        type: 'bar',
+        data: {
+        labels: ["Jan","Feb" ,"Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        datasets: [{
+          label: 'Money Saved',
+          data: [500, 300, 450, 700, 250, 300,800, 500, 600, 400, 360, 290],
+          borderWidth: 2
+        }]
+        },
+        options: {
+            plugins:{
+                title:{
+                    display:true,
+                    text:'Money Saved',
+                    font:{weight: 'bold'},
+                }
+            },
+            responsive:false,
+            maintainAspectRatio:false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+        }
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
