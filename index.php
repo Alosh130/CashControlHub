@@ -87,6 +87,41 @@
         order:1;
         align-self:flex-start;
     }
+    .btn {
+        position: relative;
+        background-color: rgb(230, 34, 77);
+        border-radius: 5px;
+        box-shadow: rgb(121, 18, 55) 0px 4px 0px 0px;
+        padding: 15px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        box-sizing: border-box;
+        width: 154px;
+        height: 49px;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        transition: all 0.3s ease-in-out;
+        z-index: 1;
+        overflow: hidden;
+      }
+      
+      .btn::before {
+        content: "";
+        background-color: rgb(248, 50, 93);
+        width: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: width 700ms ease-in-out;
+        display: inline-block;
+      }
+      
+      .btn:hover::before {
+        width: 100%;
+      }
     </style>
     <link rel="icon" type="image/x-icon" href="assets/piggy-bank.png">
     <title>CashControlHub</title>
@@ -170,7 +205,7 @@
         <img class="img1" src="./assets/how-to-run-a-volunteer-board-meeting.jpg" alt="Meeting">
         </div>
 
-        <a href="register.html" class="btn btn-success">Register Now</a>
+        <a href="register.html" class="btn">Register Now</a>
         
         
     </div>

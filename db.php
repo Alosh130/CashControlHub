@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
     $userpassword = $_POST['password'];
+    $hashPWD = password_hash($userpassword,PASSWORD_BCRYPT);
+    $_SESSION['HashedPWD']= $hashPWD;
     $Email = $_POST['Email'];$_SESSION['Email'] = $Email;
     $Age = $_POST['Birthday'];
     $phone = $_POST['phone'];
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                echo '<script>alert("Passwords doesn\'t Match")</script>';
             }else{
                 $sql = "INSERT INTO `cashcontrolhub`.`reg` (FirstName, LastName, Password,Email, Birthday,Phone, Gender)
-                VALUES ('$firstName', '$lastName', '$userpassword','$Email', '$Age', '$phone', '$gender')";
+                VALUES ('$firstName', '$lastName', '$hashPWD','$Email', '$Age', '$phone', '$gender')";
     
                 if($conn->query($sql)=== TRUE){
                     header("Location:login.html");

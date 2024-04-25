@@ -47,41 +47,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Phone = $row['Phone'];
         $_SESSION['Pnumber'] = $Phone;
     }
+    $_SESSION['pwd'] = $_POST['Pass'];
     $query5 = "SELECT Password From reg Where Email = '$EmailandPhone'";
     $Pass_result = mysqli_query($conn,$query5);
     if($Pass_result){
         $row = mysqli_fetch_assoc($Pass_result);
         $gotPass = $row['Password'];
-        $_SESSION['pwd'] = $gotPass;
+        $_SESSION['spwd'] = $gotPass;
     }
-    $stmt = $conn->prepare("SELECT * FROM reg WHERE (Email = ? OR Phone = ?) AND Password = ?");
-    $stmt->bind_param("sss", $EmailandPhone, $EmailandPhone, $userpass);
+    $stmt = $conn->prepare("SELECT * FROM reg WHERE (Email = ? OR Phone = ?)");
+    $stmt->bind_param("ss", $EmailandPhone, $EmailandPhone);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result !== false && $result->num_rows > 0) {
 
         $row = $result->fetch_assoc();
+        $hashedPWD = $row['Password'];
         $firstName = $row['FirstName'];
         $lastName = $row['LastName'];
 
-        
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $firstName;
         $_SESSION['lastname'] = $lastName;
-
-        header('Location: index.php');
-        exit();
-    } else {
-
+        $_SESSION['HashedPWD'] = $hashedPWD;
+        if(password_verify($userpass,$hashedPWD)){
+            header('Location: index.php');
+            exit();
+        }
+        else {
+            $_SESSION['error_message'] = 'Invalid password';
+            header('Location: login.html');
+            exit();
+            
+        }
+        
+        
+    } 
+    else{
         $_SESSION['error_message'] = 'Invalid credentials';
-
-        echo '<p style="color: red;">' . $_SESSION['error_message'] . '</p>';
-        unset($_SESSION['error_message']); 
-
-
-        header('Location: login.html');
-        exit();
+    
+            echo '<p style="color: red;">' . $_SESSION['error_message'] . '</p>';
+            unset($_SESSION['error_message']); 
+    
+    
+            header('Location: login.html');
+            exit();
     }
 
     $stmt->close();

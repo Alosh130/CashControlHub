@@ -114,7 +114,7 @@
                 $sEmail = $_SESSION['Email'];
                 
                 if (isset($_POST["submit1"])){
-                    if(isset($_POST['cpass1']) && $_SESSION['pwd'] == $_POST['cpass1']){
+                    if(isset($_POST['cpass1']) && password_verify($_POST['cpass1'],$_SESSION['HashedPWD']) || $_POST['cpass1'] == $_SESSION['npwd'] ){
                     $fname = $_POST['fname'];
                     $sql1 = "UPDATE reg SET FirstName = ? Where Email = '$sEmail'";
                     $stmt1 = $conn->prepare($sql1);
@@ -134,8 +134,8 @@
                     }
                 
                     if (isset($_POST["submit2"])){
-                        if(isset($_POST["cpass2"]) and $_SESSION['pwd']== $_POST['cpass2']){
-                            $lname = $_POST['lname'];
+                        if(isset($_POST["cpass2"]) && password_verify($_POST['cpass2'],$_SESSION['HashedPWD']) || $_POST['cpass2'] == $_SESSION['npwd']){
+                        $lname = $_POST['lname'];
                         $sql2 = "UPDATE reg SET LastName = ? Where Email = '$sEmail'";
                         $stmt2 = $conn->prepare($sql2);
                         if(!$stmt2){
@@ -154,17 +154,19 @@
                         
                     }
                 if (isset($_POST["submit3"])){
-                    if($_POST['pass'] == $_SESSION['pwd']){
+                    if(password_verify($_POST['pass'],$_SESSION['HashedPWD'])|| password_verify($_POST['pass'],$_SESSION['hpwd'])){
                     $userpass = $_POST['rpass'];
+                    $hash = password_hash($userpass,PASSWORD_BCRYPT);
                     $sql3 = "UPDATE reg SET Password = ? Where Email = '$sEmail'";
                     $stmt3 = $conn->prepare($sql3);
                     if(!$stmt3){
                         echo 'Error in preparing the statement: ' . $conn->error;
                         exit();
                     }
-                    $stmt3->bind_param("s",$userpass);
+                    $stmt3->bind_param("s",$hash);
                     if($stmt3->execute()){
-                        $_SESSION['pwd'] = $userpass;
+                        $_SESSION['hpwd'] = $hash;
+                        $_SESSION['npwd'] = $userpass;
                         header("Location:{$_SERVER['PHP_SELF']}");
                     }
                     }else{
@@ -174,7 +176,7 @@
                     
                 }
                 if (isset($_POST["submit4"])){
-                    if($_POST['cpass5'] == $_SESSION['pwd']){
+                    if(password_verify($_POST['cpass5'],$_SESSION['HashedPWD'])|| password_verify($_POST['cpass5'],$_SESSION['hpwd'])){
                     $email = $_POST['nemail'];
                     $sql4 = "UPDATE reg SET Email = ? Where Email = '$sEmail'";
                     $stmt4 = $conn->prepare($sql4);
@@ -195,16 +197,20 @@
                 }
                 if (isset($_POST["submit5"])){
                     $phone = $_POST['phone'];
-                    $_SESSION['Pnumber'] = $phone;
-                    if(isset($_POST['phone']) and $_POST['phone'] == $_SESSION['Pnumber']){
                     
-                    $sql5 = "UPDATE reg SET Phone = ? Where Email = '$sEmail'";
-                    $stmt5 = $conn->prepare($sql5);
-                    if(!$stmt5){
+                    if(isset($_POST['phone']) and $_POST['phone'] == $_SESSION['Pnumber']){
+                        if(isset($_POST['cpass4']) && password_verify($_POST['cpass5'],$_SESSION['HashedPWD'])|| password_verify($_POST['cpass1'],$_SESSION['hpwd'])){
+                            $_SESSION['Nnumber'] = $phone;
+                            $sql5 = "UPDATE reg SET Phone = ? Where Email = '$sEmail'";
+                        $stmt5 = $conn->prepare($sql5);
+                        if(!$stmt5){
                         echo 'Error in preparing the statement: ' . $conn->error;
                         exit();
                     }
                     $stmt5->bind_param("s",$phone);
+                        }
+                    
+                    
                     if($stmt5->execute()){
 
                         header("Location:{$_SERVER['PHP_SELF']}");
@@ -215,10 +221,18 @@
                         exit();
                     }
                 }
-                $str = ""; 
-                for($i=0;$i<strlen($_SESSION['pwd']);$i++){
-                    $str .= "*";
+                $str = "";
+                if(isset($_SESSION['npwd'])){
+                    for($i=0;i<strlen($_SESSION['npwd']);$i++){
+                        $str .="*";
+                    }
+                }else{
+                    for($i=0;$i<strlen($_SESSION['pwd']);$i++){
+                        $str .= "*";
+                    
                 }
+                }
+                
                 $threechar = substr($_SESSION['Email'],0,4);
                 $at = strpos($_SESSION['Email'],'@');
                 $size = 0;
