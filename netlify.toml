@@ -1,0 +1,3 @@
+[build]
+  command = "composer install && composer build"
+  publish = "cashcontrolhub/"
