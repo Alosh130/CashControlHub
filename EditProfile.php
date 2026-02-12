@@ -223,7 +223,7 @@
                 }
                 $str = "";
                 if(isset($_SESSION['npwd'])){
-                    for($i=0;i<strlen($_SESSION['npwd']);$i++){
+                    for($i=0;$i<strlen($_SESSION['npwd']);$i++){
                         $str .="*";
                     }
                 }else{

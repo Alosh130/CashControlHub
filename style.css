@@ -28,5 +28,7 @@ html{
         background-color: var(--greybgcolor);
         color: var(--whitebgcolor);
     }
-    
+    table,td{
+        margin:50px;
+    }
       
